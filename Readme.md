@@ -1,4 +1,5 @@
 # Action Path Server
+Rails server that communicates with the Action Path mobile app.
 
 ## Dependencies
 
@@ -9,7 +10,7 @@
 
 After downloading the source, create the database:
 
-    rails db:migrate
+    rake db:migrate
 
 To run:
 
