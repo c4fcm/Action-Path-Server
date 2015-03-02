@@ -8,7 +8,7 @@ class IssuesController < ApplicationController
       :lat => 42.30293,
       :lng => -72.234234234,
       :address => "123 State St. New Haven, CT",
-      :image_full => "http://seeclickfix.com/files/comment_images/0001/3476/32eebb4f8669b5beb441280bc16f26bf.jpeg"
+      :image_full => "https://pbs.twimg.com/media/BrTlTtRIEAAU7jv.jpg:large"
     }
     render :json => @issue
   end
