@@ -15,3 +15,29 @@ After downloading the source, create the database:
 To run:
 
     rails server
+    
+## REST API
+
+### /users
+
+Methods: POST
+
+### /users/:user_id
+
+Methods: GET
+
+### /issues
+
+Methods: GET
+
+### /issues/:issue_id
+
+Methods: GET
+
+### /subscriptions/user/:user_id
+
+Methods: POST
+
+### /subscriptions/:subscription_id
+
+Methods: DELETE
