@@ -4,9 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one_pothole: {}
-#  user: :one
-#  issue: pothole
+one_pothole: 
+  user: one
+  issue: pothole
 
 two: {}
 #  column: value
