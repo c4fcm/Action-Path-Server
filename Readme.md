@@ -26,6 +26,10 @@ Methods: POST
 
 Methods: GET
 
+### /user/:user_id/subscriptions
+
+Methods: POST, GET
+
 ### /issues
 
 Methods: GET
@@ -33,10 +37,6 @@ Methods: GET
 ### /issues/:issue_id
 
 Methods: GET
-
-### /subscriptions/user/:user_id
-
-Methods: POST
 
 ### /subscriptions/:subscription_id
 
