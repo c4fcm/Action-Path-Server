@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :users, :issues, :responses, :subscriptions
+  resources :issues, :responses, :subscriptions
+  resources :users do
+    resources :subscriptions
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
