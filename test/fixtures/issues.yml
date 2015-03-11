@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  status: MyString
-  summary: MyString
-  description: MyString
-  lat: 9.99
-  lng: 9.99
-  address: MyText
-  image_full: MyString
+pothole:
+  status: Open
+  summary: Pothole
+  description: Please fix my neighborhood
+  lat: 42.30293
+  lng: -72.234234234
+  address: 123 State St. New Haven, CT
+  image_full: https://pbs.twimg.com/media/BrTlTtRIEAAU7jv.jpg:large
 
-two:
-  status: MyString
-  summary: MyString
-  description: MyString
-  lat: 9.99
-  lng: 9.99
-  address: MyText
-  image_full: MyString
+car:
+  status: Open
+  summary: Abandoned car
+  description: Illegally parked
+  lat: 42.359789
+  lng: -71.091843
+  address: 222 Memorial Dr. Cambridge, MA
+  image_full: http://hacks.mit.edu/Hacks/by_year/1994/cp_car/heliNOT-ap-photo_smcrp.gif
