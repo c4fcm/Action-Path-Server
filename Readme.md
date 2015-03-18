@@ -18,6 +18,14 @@ To run:
     
 ## REST API
 
+### /places
+
+Methods: GET
+
+### /places/:place_id/issues
+
+Methods: GET
+
 ### /users
 
 Methods: POST
