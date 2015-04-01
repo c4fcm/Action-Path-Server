@@ -11,6 +11,11 @@ Rails server that communicates with the Action Path mobile app.
 After downloading the source, create the database:
 
     rake db:migrate
+    rake db:seed
+
+To fetch SeeClickFix data:
+
+    rake actionpath:fetch_issues
 
 To run:
 
