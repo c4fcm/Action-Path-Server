@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323195740) do
+ActiveRecord::Schema.define(version: 20150401190023) do
 
   create_table "issues", force: :cascade do |t|
     t.string   "status"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150323195740) do
     t.string   "image_full"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "place_id"
   end
 
   create_table "places", force: :cascade do |t|

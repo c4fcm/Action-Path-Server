@@ -10,10 +10,10 @@ namespace :actionpath do
       params = { place_url: place.url_name }
       uri.query = URI.encode_www_form(params) 
       res = JSON.parse(Net::HTTP.get_response(uri).body)
-      puts res
       res["issues"].each do |res_issue|
         issue = {
           :id => res_issue["id"],
+          :place_id => place.id,
           :status => res_issue["status"],
           :summary => res_issue["summary"],
           :description => res_issue["description"],
