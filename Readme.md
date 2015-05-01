@@ -54,3 +54,7 @@ Methods: GET
 ### /subscriptions/:subscription_id
 
 Methods: DELETE
+
+### /logs
+
+Methods: POST
