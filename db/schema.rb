@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150401190023) do
+ActiveRecord::Schema.define(version: 20150608151628) do
 
   create_table "issues", force: :cascade do |t|
     t.string   "status"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20150401190023) do
     t.integer  "place_id"
   end
 
+  create_table "logs", force: :cascade do |t|
+    t.string   "type"
+    t.integer  "user_id"
+    t.integer  "issue_id"
+    t.string   "action"
+    t.datetime "timestamp"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.text     "json"
@@ -33,6 +45,15 @@ ActiveRecord::Schema.define(version: 20150401190023) do
     t.datetime "updated_at", null: false
     t.string   "url_name"
     t.string   "state"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "issue_id"
+    t.datetime "timestamp"
+    t.string   "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
