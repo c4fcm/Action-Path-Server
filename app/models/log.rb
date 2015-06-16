@@ -1,6 +1,6 @@
 class Log < ActiveRecord::Base
 
-	def from_json_obj obj
+	def self.from_json_obj obj
 		log = Log.new
 		log.type = "action"
 		log.user_id = Integer(obj.userID)
