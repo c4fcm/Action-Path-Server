@@ -7,8 +7,8 @@ class Log < ActiveRecord::Base
 		log.issue_id = Integer(obj["issueID"])
 		log.action = obj["actionType"]
 		log.timestamp = DateTime.parse(obj["timestamp"])
-		log.lat = Float(log["lat"])
-		log.lng = Float(log["long"])
+		log.lat = Float(log["lat"]) if not log["lat"].empty?
+		log.lng = Float(log["long"]) if not log["long"].empty?
 		log
 	end
 
