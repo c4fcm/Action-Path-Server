@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608151628) do
+ActiveRecord::Schema.define(version: 20150616153614) do
 
   create_table "issues", force: :cascade do |t|
     t.string   "status"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20150608151628) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.string   "type"
     t.integer  "user_id"
     t.integer  "issue_id"
     t.string   "action"
