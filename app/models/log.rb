@@ -4,9 +4,9 @@ class Log < ActiveRecord::Base
 		log = Log.new
 		log.type = "action"
 		log.user_id = Integer(obj["userID"])
-		log.issue_id = Integer(obj.["issueID"])
+		log.issue_id = Integer(obj["issueID"])
 		log.action = obj["actionType"]
-		log.timestamp = DateTime.parse(obj.["timestamp"])
+		log.timestamp = DateTime.parse(obj["timestamp"])
 		log.lat = Float(log["lat"])
 		log.lng = Float(log["long"])
 		log
