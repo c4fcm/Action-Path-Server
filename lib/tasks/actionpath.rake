@@ -7,7 +7,7 @@ namespace :actionpath do
     api = "https://seeclickfix.com/api/v2/"
     uri = URI.parse("%sissues" % api)
     Place.all().each do |place|
-      params = { place_url: place.url_name }
+      params = { place_url: place.url_name, per_page: 100 }
       uri.query = URI.encode_www_form(params) 
       res = JSON.parse(Net::HTTP.get_response(uri).body)
       res["issues"].each do |res_issue|
@@ -22,7 +22,7 @@ namespace :actionpath do
           :address => res_issue["address"],
           :image_full => res_issue["media"]["image_full"]
         }
-        Issue.create(issue)
+        Issue.create(issue) if not Issue.exists? issue[:id]
       end
       # Don't overload the seeclickfix server
       sleep(1)
