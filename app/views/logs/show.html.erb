@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @log.user_id %>
+</p>
+
+<p>
+  <strong>Issue:</strong>
+  <%= @log.issue_id %>
+</p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @log.action %>
+</p>
+
+<p>
+  <strong>Timestamp:</strong>
+  <%= @log.timestamp %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @log.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @log.lng %>
+</p>
+
+<p>
+  <strong>Install:</strong>
+  <%= @log.install_id %>
+</p>
+
+<%= link_to 'Edit', edit_log_path(@log) %> |
+<%= link_to 'Back', logs_path %>

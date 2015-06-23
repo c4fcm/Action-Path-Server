@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :issues, :responses, :subscriptions
+  resources :issues, :responses, :subscriptions, :logs
   resources :places do
     resources :issues
   end
