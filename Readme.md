@@ -20,6 +20,10 @@ To fetch SeeClickFix data:
 To run:
 
     rails server
+
+Or on c9:
+
+    rails s -b $IP -p $PORT
     
 ## REST API
 
