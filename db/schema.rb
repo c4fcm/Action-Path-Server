@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623144202) do
+ActiveRecord::Schema.define(version: 20150722151652) do
 
   create_table "issues", force: :cascade do |t|
     t.string   "status"
@@ -41,10 +41,11 @@ ActiveRecord::Schema.define(version: 20150623144202) do
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.text     "json"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "url_name"
     t.string   "state"
+    t.datetime "issues_fetched_at"
   end
 
   create_table "responses", force: :cascade do |t|
