@@ -1,4 +1,4 @@
-require 'open-uri'
+require 'see_click_fix'
 
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
@@ -6,12 +6,12 @@ class PlacesController < ApplicationController
   def near
     lat = params[:lat]
     lng = params[:lng]
-    url = "https://seeclickfix.com/api/v2/places?lat=#{lat}&lng=#{lng}&per_page=50"
-    @places_near = JSON.load(open(url))['places']
-    @places_near.select!{|place| place['place_type']=="City" }
+    places_near = SeeClickFix.places_near(lat,lng)['places']
+    places_near.select{|place| place['place_type']=="City" }
+
     respond_to do |format|
-      format.html { render :json => @places_near }
-      format.json { render :json => @places_near }
+      format.html { render :json => places_near }
+      format.json { render :json => places_near }
     end
   end
 
