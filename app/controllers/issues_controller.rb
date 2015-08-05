@@ -36,5 +36,5 @@ class IssuesController < ApplicationController
     end
     render :json => @issues
   end
-
+  
 end

@@ -3,16 +3,20 @@ Rails.application.routes.draw do
   get 'places/near' => 'places#near'
 
   resources :issues, :responses, :subscriptions, :logs
+  
+  resources :issues do 
+    resources :responses
+  end
+
   resources :places do
     resources :issues
   end
+
   resources :users do
     resources :subscriptions
   end
   
   post 'logs/sync' => 'logs#sync'
-
-  #post 'issues/:id/respond' => 'issues#respond'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
