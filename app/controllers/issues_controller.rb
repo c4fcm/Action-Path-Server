@@ -3,7 +3,7 @@ require 'see_click_fix'
 class IssuesController < ApplicationController
   
   def index
-    if params[:place_id] then
+    if params[:place_id] and params[:place_id].to_i>0 then
       place_id = params[:place_id]
       # first make sure the place is in our db locally
       if not Place.exists?(:id => place_id)
@@ -16,7 +16,7 @@ class IssuesController < ApplicationController
       if place.issues_fetched_at.nil? or place.issues_fetched_at < 6.hours.ago
         place.update(issues_fetched_at: DateTime.now)
         # fetch all the latest issues
-        issues_list = SeeClickFix.lastest_issues(place[:place_url])['issues']
+        issues_list = SeeClickFix.lastest_issues(place.url_name)['issues']
         # save them locally
         issues_list.each do |issue_info|
           new_issue = Issue.from_json issue_info
@@ -32,7 +32,7 @@ class IssuesController < ApplicationController
       # return results to client
       @issues = Issue.where({:place_id => place_id})
     else
-      @issues = Issue.all()
+      @issues = []
     end
     render :json => @issues
   end

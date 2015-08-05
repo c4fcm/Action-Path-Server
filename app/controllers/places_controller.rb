@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
     lat = params[:lat]
     lng = params[:lng]
     places_near = SeeClickFix.places_near(lat,lng)['places']
-    places_near.select{|place| place['place_type']==SeeClickFix::PLACE_TYPE_CITY }
+    places_near.select!{|place| place['place_type']==SeeClickFix::PLACE_TYPE_CITY }
 
     respond_to do |format|
       format.html { render :json => places_near }

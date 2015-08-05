@@ -8,16 +8,19 @@ class SeeClickFix
 
   def self.place(place_id)
     url = BASE_URL + "places/" + place_id.to_s
+    Rails::logger.debug("SCF: querying from #{url}")
     self._load_json_from url
   end
 
   def self.places_near(lat,lng)
     url = BASE_URL + "places?" + {:lat=>lat,:lng=>lng,:per_page=>50 }.to_query
+    Rails::logger.debug("SCF: querying from #{url}")
     self._load_json_from url
   end
 
   def self.lastest_issues(place_url)
     url = BASE_URL + "issues?" + {:place_url=>place_url,:per_page=>100}.to_query
+    Rails::logger.debug("SCF: querying from #{url}")
     self._load_json_from url
   end
 
