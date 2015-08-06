@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # some endpoints used by the app client
   get 'places/near' => 'places#near'  
   post 'logs/sync' => 'logs#sync'
-  post 'users/add' =>'users#add'
+  post 'installs/add' =>'installs#add'
   post 'responses/add' =>'responses#add'
 
   resources :users, :responses, :subscriptions, :logs

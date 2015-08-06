@@ -4,7 +4,7 @@ class InstallsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def add
     if params[:id].present?
-      install = Install.find(params[:id])
+      install = Install.get_or_create(params[:id])
       render :json => {:status =>'ok', :msg=> install.id}
     else
       render :json => {:status =>'error', :msg => 'missing id'}
