@@ -1,14 +1,13 @@
 class Install < ActiveRecord::Base
-  self.primary_key = 'id'
 
-  def self.get_or_create id
-    matching_users = Install.where(:id=>id).count
-    if matching_users==0
-      found_user = Install.create(:id=>id) # this saves it too
+  def self.get_or_create device_id
+    matching = Install.where(:device_id=>device_id).count
+    if matching==0
+      found = Install.create(:device_id=>device_id) # this saves it too
     else
-      found_user = Install.where(:id=>id).first
+      found = Install.where(:device_id=>device_id).first
     end
-    found_user
+    found
   end
   
 end

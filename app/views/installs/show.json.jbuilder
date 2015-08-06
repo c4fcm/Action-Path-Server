@@ -1,1 +1,1 @@
-json.extract! @install, :id, :id, :created_at, :created_at, :updated_at
+json.extract! @install, :id, :device_id, :created_at, :created_at, :updated_at

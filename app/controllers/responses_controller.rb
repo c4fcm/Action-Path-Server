@@ -4,11 +4,12 @@ class ResponsesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def add
     if params[:installId].present? and params[:issueId].present? and params[:answer].present? 
-      install = Install.find(params[:installId])
+      install = Install.where(device_id: params[:installId])
       if install.nil?
         logger.error "tried to create an answer for installation that doesn't exist (install_id #{params[:installId]})"
         render :json => {:status => 'error', :msg => 'invalid install_id'}
       else
+        install = install.first
         response = Response.new
         response.install_id = install.id
         response.issue_id = params[:issueId].to_i
@@ -27,6 +28,8 @@ class ResponsesController < ApplicationController
   def index
     if params[:issue_id].present?
       @responses = Response.where( issue_id: params[:issue_id])
+    elsif params[:install_id].present?
+      @responses = Response.where( install_id: params[:install_id])
     else
       @responses = Response.all
     end
