@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @response.user_id %>
+</p>
+
+<p>
+  <strong>Issue:</strong>
+  <%= @response.issue_id %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @response.answer %>
+</p>
+
+<p>
+  <strong>Timestamp:</strong>
+  <%= @response.timestamp %>
+</p>
+
+<%= link_to 'Edit', edit_response_path(@response) %> |
+<%= link_to 'Back', responses_path %>
