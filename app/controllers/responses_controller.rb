@@ -3,7 +3,7 @@ class ResponsesController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
   def add
-    if params[:installId].present? and params[:issue_id].present? and params[:answer].present? 
+    if params[:installId].present? and params[:issueId].present? and params[:answer].present? 
       user = User.find_by_install_id params[:installId]
       if user.nil?
         logger.error "tried to create an answer for user that doesn't exist (install_id #{params[:installId]})"
@@ -11,7 +11,7 @@ class ResponsesController < ApplicationController
       else
         response = Response.new
         response.user_id = user.id
-        response.issue_id = params[:issue_id].to_i
+        response.issue_id = params[:issueId].to_i
         response.answer = params[:answer]
         response.save
         render :json => {:status =>'ok'}

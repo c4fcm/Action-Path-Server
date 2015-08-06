@@ -1,7 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
-
   # GET /places/:place_id/issues
   # GET /places/:place_id/issues.json
   # GET /issues

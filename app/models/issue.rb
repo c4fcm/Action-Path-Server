@@ -1,5 +1,6 @@
 class Issue < ActiveRecord::Base
   has_many :subscriptions
+  belongs_to :place
 
   def self.from_json json
     i = Issue.new
