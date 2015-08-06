@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>User</th>
+      <th>Install</th>
       <th>Issue</th>
       <th>Answer</th>
       <th>Timestamp</th>
@@ -16,7 +16,7 @@
   <tbody>
     <% @responses.each do |response| %>
       <tr>
-        <td><%= response.user_id %></td>
+        <td><%= response.install_id %></td>
         <td><%= response.issue_id %></td>
         <td><%= response.answer %></td>
         <td><%= response.timestamp %></td>
