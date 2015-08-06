@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722151652) do
+ActiveRecord::Schema.define(version: 20150806163109) do
+
+  create_table "installs", id: false, force: :cascade do |t|
+    t.string   "id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "issues", force: :cascade do |t|
     t.string   "status"
@@ -49,7 +56,7 @@ ActiveRecord::Schema.define(version: 20150722151652) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "install_id"
     t.integer  "issue_id"
     t.datetime "timestamp"
     t.string   "answer"
@@ -67,7 +74,8 @@ ActiveRecord::Schema.define(version: 20150722151652) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "install_id"
+    t.string   "username"
+    t.string   "password"
   end
 
 end

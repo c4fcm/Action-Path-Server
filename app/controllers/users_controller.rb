@@ -1,16 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :verify_authenticity_token
-  def add
-    if params[:installId].present?
-      user = User.get_or_create_from_install_id params[:installId]
-      render :json => {:status =>'ok', :msg=> user.id.to_s}
-    else
-      render :json => {:status =>'error', :msg => 'missing install_id'}
-    end
-  end
-
   # GET /users
   # GET /users.json
   def index
@@ -79,6 +69,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:install_id, :created_at)
+      params.require(:user).permit(:username, :created_at)
     end
 end

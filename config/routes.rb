@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'users/add' =>'users#add'
   post 'responses/add' =>'responses#add'
 
-  resources :issues, :responses, :subscriptions, :logs
+  resources :users, :responses, :subscriptions, :logs
   
   resources :issues do 
     resources :responses
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :issues
   end
 
-  resources :users do
+  resources :installs do
     resources :subscriptions
     resources :logs
     resources :responses
