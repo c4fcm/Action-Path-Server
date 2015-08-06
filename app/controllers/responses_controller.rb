@@ -25,7 +25,11 @@ class ResponsesController < ApplicationController
   # GET /responses
   # GET /responses.json
   def index
-    @responses = Response.all
+    if params[:issue_id].present?
+      @responses = Response.where( issue_id: params[:issue_id])
+    else
+      @responses = Response.all
+    end
   end
 
   # GET /responses/1
