@@ -1,3 +1,5 @@
+require 'see_click_fix'
+
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
