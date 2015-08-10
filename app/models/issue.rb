@@ -11,7 +11,7 @@ class Issue < ActiveRecord::Base
     i.lat = json['lat']
     i.lng = json['lng']
     i.address = json['address']
-    i.image_full = json['image_full']
+    i.image_full = json['media']['image_full']
     i.created_at = Time.parse(json['created_at']).in_time_zone
     i.updated_at = Time.parse(json['updated_at']).in_time_zone
     i
