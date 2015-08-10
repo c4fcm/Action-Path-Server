@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Device Id:</strong>
+  <%= @install.device_id %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @install.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_install_path(@install) %> |
+<%= link_to 'Back', installs_path %>

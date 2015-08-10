@@ -22,7 +22,7 @@ class LogsController < ApplicationController
         status_message = 'invalid json in log ('+e.to_s+')'
       end
     end
-	  render :json => {"status":status,"message":status_message}
+	  render :json => {"status"=>status,"message"=>status_message}
   end
   
   # GET /logs

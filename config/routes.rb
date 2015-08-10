@@ -1,14 +1,27 @@
 Rails.application.routes.draw do
-  resources :issues, :responses, :subscriptions, :logs
+
+  # some endpoints used by the app client
+  get 'places/near' => 'places#near'  
+  post 'logs/sync' => 'logs#sync'
+  post 'installs/add' =>'installs#add'
+  post 'responses/add' =>'responses#add'
+
+  resources :users, :responses, :subscriptions, :logs
+  
+  resources :issues do 
+    resources :responses
+  end
+
   resources :places do
     resources :issues
   end
-  resources :users do
+
+  resources :installs do
     resources :subscriptions
+    resources :logs
+    resources :responses
   end
-  
-  post 'logs/sync' => 'logs#sync'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

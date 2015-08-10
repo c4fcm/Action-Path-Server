@@ -1,0 +1,25 @@
+<%= form_for(@install) do |f| %>
+  <% if @install.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@install.errors.count, "error") %> prohibited this install from being saved:</h2>
+
+      <ul>
+      <% @install.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :device_id %><br>
+    <%= f.text_field :device_id %>
+  </div>
+  <div class="field">
+    <%= f.label :created_at %><br>
+    <%= f.datetime_select :created_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

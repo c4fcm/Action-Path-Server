@@ -3,23 +3,25 @@ Rails server that communicates with the Action Path mobile app.
 
 ## Dependencies
 
-* Ruby >= 2.2.0
-* Rails >= 4.2
+Use Ruby >= 2.2.0.  All the other dependencies are in the Gemfile
 
 ## Installation
 
-After downloading the source, create the database:
+1. bundle install
+2. rake db:migrate
+3. rake db:seed
 
-    rake db:migrate
-    rake db:seed
+## To Run It
 
-To fetch SeeClickFix data:
+On your computer:
+```shell
+rails server
+```
 
-    rake actionpath:fetch_issues
-
-To run:
-
-    rails server
+Or on c9:
+```shell
+rails s -b $IP -p $PORT
+```
     
 ## REST API
 

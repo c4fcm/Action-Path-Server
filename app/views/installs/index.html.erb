@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Installs</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Device Id</th>
+      <th>Created at</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @installs.each do |install| %>
+      <tr>
+        <td><%= install.device_id %></td>
+        <td><%= install.created_at %></td>
+        <td><%= link_to 'Show', install %></td>
+        <td><%= link_to 'Edit', edit_install_path(install) %></td>
+        <td><%= link_to 'Destroy', install, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Responses', install_responses_path(install) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Install', new_install_path %>
