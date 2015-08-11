@@ -17,4 +17,8 @@ class Issue < ActiveRecord::Base
     i
   end
 
+  def scf_url
+    "http://seeclickfix.com/issues/#{id}"
+  end
+
 end

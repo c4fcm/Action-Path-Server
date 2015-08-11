@@ -27,7 +27,9 @@
 
 <p>
   <strong>Image full:</strong>
-  <%= @issue.image_full %>
+  <% if @issue.image_full %>
+  <img src="<%= @issue.image_full %>">
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_issue_path(@issue) %> |

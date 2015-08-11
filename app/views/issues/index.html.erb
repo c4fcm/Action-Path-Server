@@ -10,7 +10,7 @@
       <th>Status</th>
       <th>Description</th>
       <th>Address</th>
-      <th>Image full</th>
+      <th>Image?</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -18,12 +18,12 @@
   <tbody>
     <% @issues.each do |issue| %>
       <tr>
-        <td><%= issue.id %></td>
+        <td><%= link_to issue.id, issue.scf_url %></td>
         <td><%= issue.summary %></td>
         <td><%= issue.status %></td>
         <td><%= issue.description %></td>
         <td><%= issue.address %></td>
-        <td><%= issue.image_full %></td>
+        <td><%= link_to('view',issue.image_full) if issue.image_full%></td>
         <td><%= link_to 'Show', issue %></td>
         <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
         <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
