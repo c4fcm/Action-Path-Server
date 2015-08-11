@@ -26,6 +26,16 @@
 </p>
 
 <p>
+  <strong>Latitude:</strong>
+  <%= @issue.lat %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @issue.lng %>
+</p>
+
+<p>
   <strong>Image full:</strong>
   <% if @issue.image_full %>
   <img src="<%= @issue.image_full %>">
