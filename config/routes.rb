@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  
   # some endpoints used by the app client
   get 'places/near' => 'places#near'  
   post 'logs/sync' => 'logs#sync'
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
     resources :logs
     resources :responses
   end
+
+  root to: "installs#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
