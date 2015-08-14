@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810185014) do
+ActiveRecord::Schema.define(version: 20150814201508) do
 
   create_table "installs", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20150810185014) do
     t.string   "status"
     t.string   "summary"
     t.text     "description"
-    t.decimal  "lat"
-    t.decimal  "lng"
+    t.float    "lat"
+    t.float    "lng"
     t.text     "address"
     t.string   "image_full"
     t.datetime "created_at",  null: false
@@ -69,13 +69,6 @@ ActiveRecord::Schema.define(version: 20150810185014) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "issue_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "username"
-    t.string   "password"
   end
 
 end
