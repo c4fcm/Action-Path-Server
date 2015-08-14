@@ -3,6 +3,9 @@ require 'see_click_fix'
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
+  skip_before_filter :verify_authenticity_token, :only => [:index]
+  skip_before_filter :authenticate_user!, :only => [:index]
+
   # GET /places/:place_id/issues
   # GET /places/:place_id/issues.json
   # GET /issues

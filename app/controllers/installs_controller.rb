@@ -1,7 +1,9 @@
 class InstallsController < ApplicationController
   before_action :set_install, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token, :only => [:add]
+  skip_before_filter :authenticate_user!, :only => [:add]
+
   def add
     if params[:id].present?
       install = Install.get_or_create(params[:id])

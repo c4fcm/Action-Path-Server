@@ -3,6 +3,9 @@ require 'see_click_fix'
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
+  skip_before_filter :verify_authenticity_token, :only => [:near]
+  skip_before_filter :authenticate_user!, :only => [:near]
+
   def near
     lat = params[:lat]
     lng = params[:lng]
