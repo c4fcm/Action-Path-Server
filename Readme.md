@@ -7,9 +7,9 @@ Use Ruby >= 2.2.0.  All the other dependencies are in the Gemfile
 
 ## Installation
 
-1. bundle install
-2. rake db:migrate
-3. rake db:seed
+1. `bundle install`
+2. `rake db:migrate`
+3. `sudo apt-get install imagemagick -y`
 
 ## To Run It
 

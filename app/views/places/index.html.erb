@@ -9,7 +9,7 @@
       <th>Url name</th>
       <th>State</th>
       <th>Issues fetched at</th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -24,6 +24,7 @@
         <td><%= link_to 'Edit', edit_place_path(place) %></td>
         <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Issues', place_issues_path(place)%></td>
+        <td><%= link_to 'Update Issues', place_issues_path(place)+"?force_update=1" %></td>
       </tr>
     <% end %>
   </tbody>

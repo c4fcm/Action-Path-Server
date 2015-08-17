@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@issue) do |f| %>
+<%= bootstrap_form_for(@issue, :html => { :multipart => true }) do |f| %>
 
   <% if @issue.errors.any? %>
     <div id="error_explanation">
@@ -30,7 +30,9 @@
 
     <%= f.text_field :lng %>
 
-    <%= f.text_field :image_full %>
+    <%= f.text_field :scf_image_url, :label=>"SCF 100x100 Image URL" %>
+
+    <%= f.file_field :custom_image %>
 
     <%= f.primary "save" %>
 

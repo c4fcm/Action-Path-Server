@@ -21,7 +21,8 @@ class IssuesController < ApplicationController
         new_place.save
       end
       place = Place.find(place_id)
-      if place.issues_fetched_at.nil? or place.issues_fetched_at < 6.hours.ago
+      force_update = params[:force_update] and params[:force_update]==1
+      if force_update or place.issues_fetched_at.nil? or place.issues_fetched_at < 6.hours.ago
         place.update(issues_fetched_at: DateTime.now)
         # fetch all the latest issues
         issues_list = SeeClickFix.lastest_issues(place.url_name)['issues']
@@ -36,6 +37,9 @@ class IssuesController < ApplicationController
           end
         end
         logger.info("Fetched and tried to save #{issues_list.count} new issues from place #{place_id}" )
+      end
+      if force_update
+        flash[:notice] = "Updated issues from SeeClickFix"
       end
       # return results to client
       @issues = Issue.where({:place_id => place_id})
@@ -106,6 +110,6 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:id, :summary, :status, :description, :address, :image_full)
+      params.require(:issue).permit(:place_id, :summary, :status, :description, :address, :scf_image_url, :lat, :lng, :geofence_radius, :custom_image)
     end
 end

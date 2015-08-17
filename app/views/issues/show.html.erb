@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <strong>Geofence Radius:</strong>
+  <%= @issue.geofence_radius %>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @issue.address %>
 </p>
@@ -36,9 +41,20 @@
 </p>
 
 <p>
-  <strong>Image full:</strong>
-  <% if @issue.image_full %>
-  <img src="<%= @issue.image_full %>">
+  <strong>SCF Image:</strong>
+  <% if @issue.scf_image_url %>
+    <%= image_tag(@issue.scf_image_url) %>
+  <% else %>
+    <i>None</i>
+  <% end %>
+</p>
+
+<p>
+  <strong>Custom Image:</strong>
+  <% if @issue.custom_image.exists? %>
+    <%= image_tag(@issue.custom_image.url(:thumb)) %>
+  <% else %>
+    <i>None</i>
   <% end %>
 </p>
 

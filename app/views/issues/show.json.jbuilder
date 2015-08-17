@@ -1,1 +1,1 @@
-json.extract! @issue, :id, :id, :summary, :status, :description, :address, :image_full, :created_at, :updated_at
+json.extract! @issue, :id, :id, :summary, :status, :description, :address, :scf_image_url, :created_at, :updated_at

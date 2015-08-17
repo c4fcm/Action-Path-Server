@@ -23,7 +23,8 @@
         <td><%= issue.status %></td>
         <td><%= issue.description %></td>
         <td><%= issue.address %></td>
-        <td><%= link_to('view',issue.image_full) if issue.image_full%></td>
+        <td><%= image_tag(issue.scf_image_url) if issue.scf_image_url%></td>
+        <td><%= image_tag(issue.custom_image.url(:thumb)) if issue.custom_image.exists?%></td>
         <td><%= link_to 'Show', issue %></td>
         <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
         <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
