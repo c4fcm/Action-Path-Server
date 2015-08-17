@@ -42,9 +42,9 @@ class IssuesController < ApplicationController
         flash[:notice] = "Updated issues from SeeClickFix"
       end
       # return results to client
-      @issues = Issue.where({:place_id => place_id})
+      @issues = Issue.where({:place_id => place_id}).order(created_at: :desc)
     else
-      @issues = Issue.all
+      @issues = Issue.all.order(created_at: :desc)
     end
   end
 
