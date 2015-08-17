@@ -42,7 +42,7 @@
 
 <p>
   <strong>SCF Image:</strong>
-  <% if @issue.scf_image_url %>
+  <% if not @issue.scf_image_url.empty? %>
     <%= image_tag(@issue.scf_image_url) %>
   <% else %>
     <i>None</i>

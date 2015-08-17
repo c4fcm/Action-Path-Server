@@ -18,7 +18,7 @@
 
     <%= f.text_field :summary %>
 
-    <%= f.text_field :status %>
+    <%= f.select(:status, ['Open','Acknowledged','Closed'].map { |value| [ value, value ] }) %>
 
     <%= f.text_area :description %>
 
