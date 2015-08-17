@@ -1,4 +1,5 @@
-<%= form_for(@place) do |f| %>
+<%= bootstrap_form_for(@place) do |f| %>
+
   <% if @place.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
@@ -11,23 +12,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :id %>: <%= @place.id %>
+
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :url_name %><br>
+
     <%= f.text_field :url_name %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
+
     <%= f.text_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :issues_fetched_at %><br>
+
     <%= f.datetime_select :issues_fetched_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+    <%= f.text_area :json %>
+
+    <%= f.primary "save" %>
+
 <% end %>
