@@ -7,7 +7,7 @@ class ResponsesController < ApplicationController
   def add
     if params[:installId].present? and params[:issueId].present? and params[:answer].present? 
       install = Install.where(device_id: params[:installId])
-      if install.nil?
+      if install.empty?
         logger.error "tried to create an answer for installation that doesn't exist (install_id #{params[:installId]})"
         render :json => {:status => 'error', :msg => 'invalid install_id'}
       else
