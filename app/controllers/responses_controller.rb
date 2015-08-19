@@ -5,6 +5,7 @@ class ResponsesController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:add]
 
   def add
+    results = {}
     if params[:installId].present? and params[:issueId].present? and params[:answer].present? 
       install = Install.where(device_id: params[:installId])
       if install.empty?
@@ -17,11 +18,15 @@ class ResponsesController < ApplicationController
         response.issue_id = params[:issueId].to_i
         response.answer = params[:answer]
         response.save
-        render :json => {:status =>'ok'}
+        results = {:status =>'ok'}
       end
     else
       logger.warn "got a call to respond without the right params"
-      render :json => {:status =>'error',:msg => 'missing params'}
+      results = {:status =>'error',:msg => 'missing params'}
+    end
+    respond_to do |format|
+      format.html { render json: results }
+      format.json { render json: results }
     end
   end
 

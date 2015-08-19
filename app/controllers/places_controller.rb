@@ -13,8 +13,8 @@ class PlacesController < ApplicationController
     places_near.select!{|place| place['place_type']==SeeClickFix::PLACE_TYPE_CITY }
 
     respond_to do |format|
-      format.html { render :json => places_near }
-      format.json { render :json => places_near }
+      format.html { render json: places_near }
+      format.json { render json: places_near }
     end
   end
 

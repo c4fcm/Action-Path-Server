@@ -5,11 +5,16 @@ class InstallsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:add]
 
   def add
-    if params[:id].present?
+    results = {}
+    if params[:id].present? 
       install = Install.get_or_create(params[:id])
-      render :json => {:status =>'ok', :msg=> install.id}
+      results = {:status =>'ok', :msg=> install.id}
     else
-      render :json => {:status =>'error', :msg => 'missing id'}
+      results = {:status =>'error', :msg => 'missing id'}
+    end
+    respond_to do |format|
+      format.html { render json: results }
+      format.json { render json: results }
     end
   end
 
