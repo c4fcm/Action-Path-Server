@@ -42,7 +42,7 @@
 
 <p>
   <strong>SCF Image:</strong>
-  <% if not @issue.scf_image_url.empty? %>
+  <% if @issue.scf_image_url? %>
     <%= image_tag(@issue.scf_image_url) %>
   <% else %>
     <i>None</i>
@@ -51,7 +51,7 @@
 
 <p>
   <strong>Custom Image:</strong>
-  <% if @issue.custom_image.exists? %>
+  <% if @issue.custom_image? %>
     <%= image_tag(@issue.custom_image.url(:thumb)) %>
   <% else %>
     <i>None</i>

@@ -33,6 +33,10 @@
     <%= f.text_field :scf_image_url, :label=>"SCF 100x100 Image URL" %>
 
     <%= f.file_field :custom_image %>
+    <% if @issue.custom_image? %>
+      <%= image_tag(@issue.custom_image.url(:thumb)) %>
+      <%= f.check_box :delete_custom_image %>
+    <% end %>
 
     <%= f.primary "save" %>
 

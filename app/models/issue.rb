@@ -5,6 +5,8 @@ class Issue < ActiveRecord::Base
   has_attached_file :custom_image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :custom_image, :content_type => /\Aimage\/.*\Z/
 
+  include DeletableAttachment
+
   def self.from_json json
     i = Issue.new
     i.id = json['id']
