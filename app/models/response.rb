@@ -1,7 +1,7 @@
 class Response < ActiveRecord::Base
 
 	def self.from_json_obj obj
-		install = Install.get_or_create(obj["installId"]).id
+		install = Install.get_or_create(obj["installId"])
 		response = Response.new
 		response.answer = obj["answerText"]
 		response.install_id = install.id

@@ -1,7 +1,7 @@
 class Log < ActiveRecord::Base
 
 	def self.from_json_obj obj
-		install = Install.get_or_create(obj["installId"]).id
+		install = Install.get_or_create(obj["installId"])
 		log = Log.new
 		log.install_id = install.id
 		log.issue_id = Integer(obj["issueId"])
