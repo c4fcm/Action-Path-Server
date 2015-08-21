@@ -58,5 +58,12 @@
   <% end %>
 </p>
 
+<p>
+  <strong>Custom Question:</strong>
+  <%= @issue.question %>
+  <br />
+  <%= @issue.answer1 %>, <%= @issue.answer2 %>, <%= @issue.answer3 %>, <%= @issue.answer4 %>, <%= @issue.answer5 %>, <%= @issue.answer6 %>
+</p>
+
 <%= link_to 'Edit', edit_issue_path(@issue) %> |
 <%= link_to 'Back', issues_path %>

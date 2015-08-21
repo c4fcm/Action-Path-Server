@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821133928) do
+ActiveRecord::Schema.define(version: 20150821150130) do
 
   create_table "installs", force: :cascade do |t|
     t.integer  "user_id"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20150821133928) do
     t.string   "custom_image_content_type"
     t.integer  "custom_image_file_size"
     t.datetime "custom_image_updated_at"
+    t.text     "question"
+    t.text     "answer1"
+    t.text     "answer2"
+    t.text     "answer3"
+    t.text     "answer4"
+    t.text     "answer5"
+    t.text     "answer6"
   end
 
   create_table "logs", force: :cascade do |t|

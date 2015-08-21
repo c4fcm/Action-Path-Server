@@ -110,6 +110,7 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:place_id, :summary, :status, :description, :address, :scf_image_url, :lat, :lng, :geofence_radius, :custom_image)
+      params.require(:issue).permit(:place_id, :summary, :status, :description, :address, :scf_image_url, :lat, :lng, 
+        :geofence_radius, :custom_image, :question, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6 )
     end
 end
