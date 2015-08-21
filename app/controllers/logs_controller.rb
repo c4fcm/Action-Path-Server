@@ -10,12 +10,12 @@ class LogsController < ApplicationController
     if install_id==nil
       logger.error "Attempt to log without an install_id!"
       status = 'error'
-      status_message = 'attempt to log without and installation id'
+      status_message = 'attempt to sync logs without and installation id'
     else
       begin
         data = JSON.parse params[:data]
-        data.each do |json_log|
-        	log = Log.from_json_obj json_log
+        data.each do |json_obj|
+        	log = Log.from_json_obj json_obj
         	log.save
         end
         status = 'ok'

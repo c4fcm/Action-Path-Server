@@ -6,19 +6,34 @@
 </p>
 
 <p>
-  <strong>Issue:</strong>
-  <%= @response.issue_id %>
-</p>
-
-<p>
   <strong>Answer:</strong>
   <%= @response.answer %>
 </p>
 
 <p>
-  <strong>Timestamp:</strong>
-  <%= @response.timestamp %>
+  <strong>Issue:</strong>
+  <%= @log.issue_id %>
 </p>
+<p>
+  <strong>Lat:</strong>
+  <%= @log.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @log.lng %>
+</p>
+
+<p>
+  <strong>Install:</strong>
+  <%= @log.install_id %>
+</p>
+
+<p>
+  <strong>Timestamp:</strong>
+  <%= @log.timestamp %>
+</p>
+
 
 <%= link_to 'Edit', edit_response_path(@response) %> |
 <%= link_to 'Back', responses_path %>

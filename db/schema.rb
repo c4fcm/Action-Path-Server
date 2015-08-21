@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817144709) do
+ActiveRecord::Schema.define(version: 20150821133928) do
 
   create_table "installs", force: :cascade do |t|
     t.integer  "user_id"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150817144709) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "issue_id"
     t.string   "action"
     t.datetime "timestamp"
@@ -67,6 +66,8 @@ ActiveRecord::Schema.define(version: 20150817144709) do
     t.string   "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "lat"
+    t.float    "lng"
   end
 
   create_table "subscriptions", force: :cascade do |t|

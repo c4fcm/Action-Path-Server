@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @log.user_id %>
-</p>
-
-<p>
-  <strong>Issue:</strong>
-  <%= @log.issue_id %>
+  <strong>Install:</strong>
+  <%= @log.install_id %>
 </p>
 
 <p>
@@ -16,10 +11,9 @@
 </p>
 
 <p>
-  <strong>Timestamp:</strong>
-  <%= @log.timestamp %>
+  <strong>Issue:</strong>
+  <%= @log.issue_id %>
 </p>
-
 <p>
   <strong>Lat:</strong>
   <%= @log.lat %>
@@ -33,6 +27,11 @@
 <p>
   <strong>Install:</strong>
   <%= @log.install_id %>
+</p>
+
+<p>
+  <strong>Timestamp:</strong>
+  <%= @log.timestamp %>
 </p>
 
 <%= link_to 'Edit', edit_log_path(@log) %> |

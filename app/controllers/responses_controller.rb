@@ -1,33 +1,30 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :verify_authenticity_token, :only => [:add]
-  skip_before_filter :authenticate_user!, :only => [:add]
+  skip_before_filter :verify_authenticity_token, :only => [:sync]
+  skip_before_filter :authenticate_user!, :only => [:sync]
 
-  def add
-    results = {}
-    if params[:installId].present? and params[:issueId].present? and params[:answer].present? 
-      install = Install.where(device_id: params[:installId])
-      if install.empty?
-        logger.error "tried to create an answer for installation that doesn't exist (install_id #{params[:installId]})"
-        render :json => {:status => 'error', :msg => 'invalid install_id'}
-      else
-        install = install.first
-        response = Response.new
-        response.install_id = install.id
-        response.issue_id = params[:issueId].to_i
-        response.answer = params[:answer]
-        response.save
-        results = {:status =>'ok'}
-      end
+  def sync
+    install_id = params[:install_id]
+    status_message = ""
+    if install_id==nil
+      logger.error "Attempt to log without an install_id!"
+      status = 'error'
+      status_message = 'attempt to sync responses without and installation id'
     else
-      logger.warn "got a call to respond without the right params"
-      results = {:status =>'error',:msg => 'missing params'}
+      begin
+        data = JSON.parse params[:data]
+        data.each do |json_obj|
+          response = Response.from_json_obj json_obj
+          response.save
+        end
+        status = 'ok'
+      rescue JSON::ParserError => e
+        status = 'error'
+        status_message = 'invalid json in response ('+e.to_s+')'
+      end
     end
-    respond_to do |format|
-      format.html { render json: results }
-      format.json { render json: results }
-    end
+    render :json => {"status"=>status,"message"=>status_message}
   end
 
   # GET /responses

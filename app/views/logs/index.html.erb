@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>User</th>
+      <th>Install</th>
       <th>Issue</th>
       <th>Action</th>
       <th>Timestamp</th>
@@ -19,7 +19,7 @@
   <tbody>
     <% @logs.each do |log| %>
       <tr>
-        <td><%= log.user_id %></td>
+        <td><%= log.install_id %></td>
         <td><%= log.issue_id %></td>
         <td><%= log.action %></td>
         <td><%= log.timestamp %></td>
