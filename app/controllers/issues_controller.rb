@@ -22,7 +22,7 @@ class IssuesController < ApplicationController
         new_place.save
       end
       place = Place.find(place_id)
-      if place.provider==Place::PROVIDER_SEE_CLICK_FIX:
+      if place.provider==Place::PROVIDER_SEE_CLICK_FIX then
         force_update = params[:force_update] and params[:force_update]==1
         if force_update or place.issues_fetched_at.nil? or place.issues_fetched_at < 6.hours.ago
           place.update(issues_fetched_at: DateTime.now)
