@@ -16,6 +16,8 @@
 
     <%= f.text_field :name %>
 
+    <%= f.select(:provider, [Place.providers].map { |value| [ value, value ] }) %>
+
     <%= f.text_field :url_name %>
 
     <%= f.text_field :state %>

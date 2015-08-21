@@ -18,28 +18,31 @@ class IssuesController < ApplicationController
         logger.info("Adding new place %d" % place_id)
         place_info = SeeClickFix.place(place_id)
         new_place = Place.from_json place_info
+        new_place.prodider = Place::PROVIDER_SEE_CLICK_FIX
         new_place.save
       end
       place = Place.find(place_id)
-      force_update = params[:force_update] and params[:force_update]==1
-      if force_update or place.issues_fetched_at.nil? or place.issues_fetched_at < 6.hours.ago
-        place.update(issues_fetched_at: DateTime.now)
-        # fetch all the latest issues
-        issues_list = SeeClickFix.lastest_issues(place.url_name)['issues']
-        # save them locally
-        issues_list.each do |issue_info|
-          new_issue = Issue.from_json issue_info
-          new_issue.place_id = place_id
-          if Issue.exists?(:id=>new_issue[:id])
-            Issue.find(new_issue[:id]).update new_issue.attributes
-          else
-            new_issue.save
+      if place.provider==Place::PROVIDER_SEE_CLICK_FIX:
+        force_update = params[:force_update] and params[:force_update]==1
+        if force_update or place.issues_fetched_at.nil? or place.issues_fetched_at < 6.hours.ago
+          place.update(issues_fetched_at: DateTime.now)
+          # fetch all the latest issues
+          issues_list = SeeClickFix.lastest_issues(place.url_name)['issues']
+          # save them locally
+          issues_list.each do |issue_info|
+            new_issue = Issue.from_json issue_info
+            new_issue.place_id = place_id
+            if Issue.exists?(:id=>new_issue[:id])
+              Issue.find(new_issue[:id]).update new_issue.attributes
+            else
+              new_issue.save
+            end
           end
+          logger.info("Fetched and tried to save #{issues_list.count} new issues from place #{place_id}" )
         end
-        logger.info("Fetched and tried to save #{issues_list.count} new issues from place #{place_id}" )
-      end
-      if force_update
-        flash[:notice] = "Updated issues from SeeClickFix"
+        if force_update
+          flash[:notice] = "Updated issues from SeeClickFix"
+        end
       end
       # return results to client
       @issues = Issue.where({:place_id => place_id}).order(created_at: :desc)

@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Provider</th>
       <th>Url name</th>
       <th>State</th>
       <th>Issues fetched at</th>
@@ -17,6 +18,7 @@
     <% @places.each do |place| %>
       <tr>
         <td><%= place.name %></td>
+        <td><%= place.provider %></td>
         <td><%= place.url_name %></td>
         <td><%= place.state %></td>
         <td><%= place.issues_fetched_at %></td>

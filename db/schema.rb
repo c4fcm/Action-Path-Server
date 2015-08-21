@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821150130) do
+ActiveRecord::Schema.define(version: 20150821154912) do
 
   create_table "installs", force: :cascade do |t|
     t.integer  "user_id"
@@ -59,11 +59,12 @@ ActiveRecord::Schema.define(version: 20150821150130) do
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.text     "json"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "url_name"
     t.string   "state"
     t.datetime "issues_fetched_at"
+    t.string   "provider",          default: "seeclickfix"
   end
 
   create_table "responses", force: :cascade do |t|
