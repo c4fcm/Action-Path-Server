@@ -30,7 +30,13 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.all.order(timestamp: :desc).page(params[:page]).per(500)
+    if params[:issue_id].present?
+      @logs = Log.where( issue_id: params[:issue_id]).order(timestamp: :desc).page(params[:page]).per(500)
+    elsif params[:install_id].present?
+      @logs = Log.where( install_id: params[:install_id]).order(timestamp: :desc).page(params[:page]).per(500)
+    else
+      @logs = Log.all.order(timestamp: :desc).page(params[:page]).per(500)
+    end
   end
 
   # GET /logs/1

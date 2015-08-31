@@ -7,7 +7,7 @@
     <tr>
       <th>Device Id</th>
       <th>Created at</th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -20,6 +20,7 @@
         <td><%= link_to 'Edit', edit_install_path(install) %></td>
         <td><%= link_to 'Destroy', install, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Responses', install_responses_path(install) %></td>
+        <td><%= link_to 'Logs', install_logs_path(install) %></td>
       </tr>
     <% end %>
   </tbody>

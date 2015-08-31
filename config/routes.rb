@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   
   resources :issues do 
     resources :responses
+    resources :logs
   end
 
   resources :places do
