@@ -47,10 +47,14 @@ end
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+
+gem "twitter-bootstrap-rails"	# for bootstrap CSS styles
 gem "bootstrap_form"
-gem "paperclip", "~> 4.3"
+
+gem "paperclip", "~> 4.3"	# for image attachmentes
 
 gem 'mysql2'
 
-gem 'devise'
+gem 'devise'	# for user accounts
+
+gem 'kaminari'	# for view pagination

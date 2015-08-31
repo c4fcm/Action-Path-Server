@@ -30,7 +30,7 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.all.order(timestamp: :desc)
+    @logs = Log.all.order(timestamp: :desc).page(params[:page]).per(500)
   end
 
   # GET /logs/1
