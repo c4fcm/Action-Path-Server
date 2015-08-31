@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821154912) do
+ActiveRecord::Schema.define(version: 20150831135825) do
 
   create_table "installs", force: :cascade do |t|
     t.integer  "user_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150821154912) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "install_id"
+    t.string   "details"
   end
 
   create_table "places", force: :cascade do |t|

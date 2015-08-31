@@ -1,4 +1,4 @@
-<%= form_for(@log) do |f| %>
+<%= bootstrap_form_for(@log) do |f| %>
   <% if @log.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@log.errors.count, "error") %> prohibited this log from being saved:</h2>
@@ -11,35 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :install_id %><br>
-    <%= f.text_field :install_id %>
-  </div>
-  <div class="field">
-    <%= f.label :issue_id %><br>
-    <%= f.text_field :issue_id %>
-  </div>
-  <div class="field">
-    <%= f.label :action %><br>
-    <%= f.text_field :action %>
-  </div>
-  <div class="field">
-    <%= f.label :timestamp %><br>
-    <%= f.datetime_select :timestamp %>
-  </div>
-  <div class="field">
-    <%= f.label :lat %><br>
-    <%= f.text_field :lat %>
-  </div>
-  <div class="field">
-    <%= f.label :lng %><br>
-    <%= f.text_field :lng %>
-  </div>
-  <div class="field">
-    <%= f.label :install_id %><br>
-    <%= f.text_field :install_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :install_id %>
+
+  <%= f.text_field :issue_id %>
+
+  <%= f.text_field :action %>
+
+  <%= f.text_field :details %>
+
+  <%= f.datetime_select :timestamp %>
+
+  <%= f.text_field :lat %>
+  <%= f.text_field :lng %>
+
+  <%= f.text_field :install_id %>
+
+  <%= f.primary %>
+
 <% end %>
