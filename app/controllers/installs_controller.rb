@@ -21,7 +21,7 @@ class InstallsController < ApplicationController
   # GET /installs
   # GET /installs.json
   def index
-    @installs = Install.all
+    @installs = Install.all.order(created_at: :desc)
   end
 
   # GET /installs/1
