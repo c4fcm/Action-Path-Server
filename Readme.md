@@ -1,17 +1,17 @@
-# Action Path Server
+Action Path Server
+==================
+
 Rails server that communicates with the Action Path mobile app.
 
-## Dependencies
-
-Use Ruby >= 2.2.0.  All the other dependencies are in the Gemfile
-
-## Installation
+Installation
+------------
 
 1. `bundle install`
 2. `rake db:migrate`
 3. `sudo apt-get install imagemagick -y`
 
-## To Run It
+To Run It
+----------
 
 On your computer:
 ```shell
@@ -22,41 +22,10 @@ Or on c9:
 ```shell
 rails s -b $IP -p $PORT
 ```
-    
-## REST API
 
-### /places
+Deploying to Production
+-----------------------
 
-Methods: GET
-
-### /places/:place_id/issues
-
-Methods: GET
-
-### /users
-
-Methods: POST
-
-### /users/:user_id
-
-Methods: GET
-
-### /user/:user_id/subscriptions
-
-Methods: POST, GET
-
-### /issues
-
-Methods: GET
-
-### /issues/:issue_id
-
-Methods: GET
-
-### /subscriptions/:subscription_id
-
-Methods: DELETE
-
-### /logs
-
-Methods: POST
+1. Make sure to compile the assets: `RAILS_ENV=production bin/rake assets:precompile`
+2. Make sure to put a secret token for production in `config/secrets.yml`
+3. Make sure to `sudo chown -R www-data:www-data public/` so the web user can save images
