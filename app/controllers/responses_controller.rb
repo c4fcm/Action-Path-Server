@@ -3,6 +3,7 @@ class ResponsesController < ApplicationController
 
   skip_before_filter :verify_authenticity_token, :only => [:sync]
   skip_before_filter :authenticate_user!, :only => [:sync, :index]
+  after_filter :cors_set_access_control_headers, :only => [:index]
 
   def sync
     install_id = params[:install_id]
