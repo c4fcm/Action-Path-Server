@@ -31,6 +31,7 @@ class ResponsesController < ApplicationController
   # GET /responses.json
   def index
     if params[:issue_id].present?
+      @issue = Issue.find(params[:issue_id])
       @responses = Response.where( issue_id: params[:issue_id])
     elsif params[:install_id].present?
       @responses = Response.where( install_id: params[:install_id])
