@@ -33,6 +33,16 @@ class ResponsesController < ApplicationController
   def index
     if params[:issue_id].present?
       @issue = Issue.find_by_id(params[:issue_id])
+      @answers = [
+        @issue.answer1, 
+        @issue.answer2, 
+        @issue.answer3, 
+        @issue.answer4, 
+        @issue.answer5, 
+        @issue.answer6,
+      ].reject(&:empty?)
+      logger.info "ANSWERS"
+      logger.info @answers
       @responses = Response.where( issue_id: params[:issue_id])
     elsif params[:install_id].present?
       @responses = Response.where( install_id: params[:install_id])
