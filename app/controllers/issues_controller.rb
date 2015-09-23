@@ -3,8 +3,21 @@ require 'see_click_fix'
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :verify_authenticity_token, :only => [:index]
-  skip_before_filter :authenticate_user!, :only => [:index]
+  skip_before_filter :verify_authenticity_token, :only => [:index,:near]
+  skip_before_filter :authenticate_user!, :only => [:index,:near]
+
+  def near 
+    @lat = params.require(:lat)
+    @lng = params.require(:lng)
+    request_type_id = params.require(:request_type)
+    @request_type = SeeClickFix.request_type(request_type_id)
+    results = SeeClickFix.issues_near(params[:lat],params[:lng],params[:request_type])
+    @issues = results['issues'].select { |issue| issue['reporter']['role']!=SeeClickFix::ROLE_VERIFIED_OFFICIAL }
+    respond_to do |format|
+      format.html { render :near }
+      format.json { render json: @issues }
+    end
+  end
 
   # GET /places/:place_id/issues
   # GET /places/:place_id/issues.json

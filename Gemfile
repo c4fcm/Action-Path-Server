@@ -58,3 +58,5 @@ gem 'mysql2'
 gem 'devise'	# for user accounts
 
 gem 'kaminari'	# for view pagination
+
+gem 'leaflet-rails' # for making maps

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing <%=@issues.size%> "<%=@request_type['title']%>" Issues Near You</h1>
+
+<div id="map">
+
+</div>
+
+<br />
+
+<script>
+$(function(){
+  var map = L.map('map')
+  map.setView([<%=@lat%>,<%=@lng%>]);
+<% @issues.each { |issue| %>
+  var marker<%=issue['id']%> = L.marker([<%=issue['lat']%>,<%=issue['lng']%>]).addTo(map);
+  marker<%=issue['id']%>.bindPopup("<%=issue['summary']%>");
+<% } %>  
+  
+  var group = new L.featureGroup([<%=(@issues.map { |i| 'marker'+i['id'].to_s }).join(", ") %>]);
+  map.fitBounds(group.getBounds().pad(0.5));
+
+  // Set up the OSM layer
+  var layer = new L.StamenTileLayer("toner-lite");
+  map.addLayer(layer);
+});
+</script>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Summary</th>
+      <th>Status</th>
+      <th>Description</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @issues.each do |issue| %>
+      <tr>
+        <td><%= issue['id'] %></td>
+        <td><%= issue['summary'] %></td>
+        <td><%= issue['status'] %></td>
+        <td><%= issue['description'] %></td>
+        <td><%= issue['address'] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Issue', new_issue_path %>
