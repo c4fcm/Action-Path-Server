@@ -11,8 +11,9 @@ class IssuesController < ApplicationController
     @lng = params.require(:lng)
     request_type_id = params.require(:request_type)
     @request_type = SeeClickFix.request_type(request_type_id)
-    results = SeeClickFix.issues_near(params[:lat],params[:lng],params[:request_type])
-    @issues = results['issues'].select { |issue| issue['reporter']['role']!=SeeClickFix::ROLE_VERIFIED_OFFICIAL }
+    results = SeeClickFix.issues_near(@lat,@lng,request_type_id)
+    raw_issues_list = results['issues'].select { |issue| issue['reporter']['role']!=SeeClickFix::ROLE_VERIFIED_OFFICIAL }
+    @issues = Issue.insert_or_update_from_json(raw_issues_list, Issue::INVALID_PLACE_ID)
     respond_to do |format|
       format.html { render :near }
       format.json { render json: @issues }
@@ -40,18 +41,9 @@ class IssuesController < ApplicationController
         if force_update or place.issues_fetched_at.nil? or place.issues_fetched_at < 6.hours.ago
           place.update(issues_fetched_at: DateTime.now)
           # fetch all the latest issues
-          issues_list = SeeClickFix.lastest_issues(place.url_name)['issues']
-          # save them locally
-          issues_list.each do |issue_info|
-            new_issue = Issue.from_json issue_info
-            new_issue.place_id = place_id
-            if Issue.exists?(:id=>new_issue[:id])
-              Issue.find(new_issue[:id]).update new_issue.attributes
-            else
-              new_issue.save
-            end
-          end
-          logger.info("Fetched and tried to save #{issues_list.count} new issues from place #{place_id}" )
+          raw_issues_list = SeeClickFix.lastest_issues(place.url_name)['issues']
+          Issue.insert_or_update_from_json(raw_issues_list, place_id)
+          logger.info("Fetched and tried to save #{raw_issues_list.count} new issues from place #{place_id}" )
         end
         if force_update
           flash[:notice] = "Updated issues from SeeClickFix"

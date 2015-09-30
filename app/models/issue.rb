@@ -2,6 +2,8 @@ class Issue < ActiveRecord::Base
   has_many :subscriptions
   belongs_to :place
 
+  INVALID_PLACE_ID = -1
+
   has_attached_file :custom_image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :custom_image, :content_type => /\Aimage\/.*\Z/
 
@@ -24,6 +26,20 @@ class Issue < ActiveRecord::Base
 
   def scf_url
     "http://seeclickfix.com/issues/#{id}"
+  end
+
+  def self.insert_or_update_from_json json_list, place_id
+    # save them locally as issues
+    json_list.collect do |issue_info|
+      new_issue = Issue.from_json issue_info
+      new_issue.place_id = place_id
+      if Issue.exists?(:id=>new_issue[:id])
+        Issue.find(new_issue[:id]).update new_issue.attributes
+      else
+        new_issue.save
+      end
+      new_issue
+    end
   end
 
 end
