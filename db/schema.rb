@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831135825) do
+ActiveRecord::Schema.define(version: 20151014142708) do
 
   create_table "installs", force: :cascade do |t|
     t.integer  "user_id"
@@ -73,10 +73,15 @@ ActiveRecord::Schema.define(version: 20150831135825) do
     t.integer  "issue_id"
     t.datetime "timestamp"
     t.string   "answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.float    "lat"
     t.float    "lng"
+    t.text     "comment"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "subscriptions", force: :cascade do |t|

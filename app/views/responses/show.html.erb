@@ -11,6 +11,16 @@
 </p>
 
 <p>
+  <strong>Comment:</strong>
+  <%= @response.comment %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @response.photo.url(:medium) %>
+</p>
+
+<p>
   <strong>Issue:</strong>
   <%= @response.issue_id %>
 </p>
