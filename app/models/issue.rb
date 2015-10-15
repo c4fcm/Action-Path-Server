@@ -1,5 +1,6 @@
 class Issue < ActiveRecord::Base
   has_many :subscriptions
+  has_many :responses
   belongs_to :place
 
   INVALID_PLACE_ID = -1

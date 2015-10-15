@@ -1,5 +1,7 @@
 class Install < ActiveRecord::Base
 
+  has_many :responses
+
   def self.get_or_create device_id
     matching = Install.where(:device_id=>device_id).count
     if matching==0
