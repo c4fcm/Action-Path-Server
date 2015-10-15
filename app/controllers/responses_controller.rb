@@ -14,8 +14,18 @@ class ResponsesController < ApplicationController
     else
       begin
         data = JSON.parse params[:data]
-        data.each do |json_obj|
+        data.each do |json_obj|       # iterate over responses saving each
           response = Response.from_json_obj json_obj
+          if not (json_obj['photoPath'].nil? or json_obj['photoPath'].empty?)
+            filename = response.install_id.to_s+"_"+response.issue_id.to_s+"_"+response.timestamp.to_time.to_i.to_s+".jpg"
+            temp_path = Pathname.new(Dir.tmpdir).join(filename)
+            logger.debug "Wrote temp image to "+temp_path.to_s
+            temp_file = File.open(temp_path.to_s, 'wb') 
+            temp_file.write(Base64.decode64(json_obj['photoPath']))
+            temp_file.close
+            temp_file = File.open(temp_path.to_s) 
+            response.photo = temp_file
+          end
           response.save
         end
         status = 'ok'
