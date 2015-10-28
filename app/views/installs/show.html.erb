@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+Has <%=link_to @install.responses.count.to_s + " answers", responses_path(@install.id)%>.
+</p>
+
+<p>
   <strong>Device Id:</strong>
   <%= @install.device_id %>
 </p>
