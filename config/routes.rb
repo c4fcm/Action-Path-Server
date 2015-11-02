@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   get 'issues/near' => 'issues#near'
   get 'places/near' => 'places#near'
   post 'logs/sync' => 'logs#sync'
-  post 'installs/add' =>'installs#add'
-  post 'responses/sync' =>'responses#sync'
+  post 'installs/add' => 'installs#add'
+  post 'responses/sync' => 'responses#sync'
+  get 'responses/on_issues' => 'responses#on_issues'
 
   resources :users, :responses, :subscriptions, :logs
   

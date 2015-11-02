@@ -1,8 +1,20 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :verify_authenticity_token, :only => [:sync]
-  skip_before_filter :authenticate_user!, :only => [:sync]
+  skip_before_filter :verify_authenticity_token, :only => [:on_issues]
+  skip_before_filter :authenticate_user!, :only => [:on_issues]
+
+  def on_issues
+    issue_ids = params.require(:issue_ids)
+    requestor_device_id = params.require(:install_id)
+    after = params.require(:after)
+    after_time = DateTime.parse(after)
+    @responses = Response.on_issues_from_others(issue_ids, requestor_device_id, after_time)
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @responses }
+    end
+  end
 
   def sync
     install_id = params[:install_id]
