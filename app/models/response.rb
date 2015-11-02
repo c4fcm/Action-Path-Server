@@ -23,8 +23,8 @@ class Response < ActiveRecord::Base
 	  includes(:install).
 	  	references(:install).
 		where('installs.device_id != ?', install_device_id).
-	  	where(issue_id: issue_ids).
-	  	where("responses.created_at > :time", {:time => after_time})
+	  	where('responses.issue_id IN (?)', issue_ids).
+	  	where("responses.created_at > ?", after_time)
 	end
 
 end
