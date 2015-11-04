@@ -8,7 +8,7 @@ class ResponsesController < ApplicationController
     issue_ids = params.require(:issue_ids)
     requestor_device_id = params.require(:install_id)
     after = params.require(:after)
-    after_time = DateTime.parse(after)
+    after_time = DateTime.strptime(after,'%s')
     @responses = Response.on_issues_from_others(issue_ids, requestor_device_id, after_time)
     respond_to do |format|
       format.html { render :index }
