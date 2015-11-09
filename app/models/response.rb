@@ -24,7 +24,8 @@ class Response < ActiveRecord::Base
 	  	references(:install).
 		where('installs.device_id != ?', install_device_id).
 	  	where(:issue_id => issue_ids).
-	  	where("responses.created_at > ?", after_time)
+	  	where("responses.created_at > ?", after_time).
+	  	order(timestamp: :desc)
 	end
 
 end
