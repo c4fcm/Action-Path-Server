@@ -1,8 +1,8 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :verify_authenticity_token, :only => [:on_issues]
-  skip_before_filter :authenticate_user!, :only => [:on_issues]
+  skip_before_filter :verify_authenticity_token, :only => [:sync, :on_issues]
+  skip_before_filter :authenticate_user!, :only => [:sync, :on_issues]
 
   def on_issues
     issue_ids = params.require(:issue_ids)
