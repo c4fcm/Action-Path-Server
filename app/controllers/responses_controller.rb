@@ -10,6 +10,7 @@ class ResponsesController < ApplicationController
     after = params.require(:after)
     after_time = DateTime.strptime(after,'%s')
     @responses = Response.on_issues_from_others(issue_ids, requestor_device_id, after_time)
+    render :index
     respond_to do |format|
       format.html { render :index }
       format.json { render json: @responses }
