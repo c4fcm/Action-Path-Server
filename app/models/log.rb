@@ -1,5 +1,7 @@
 class Log < ActiveRecord::Base
 
+	belongs_to :install
+
 	def self.from_json_obj obj
 		install = Install.get_or_create(obj["installId"])
 		log = Log.new
