@@ -23,14 +23,14 @@ class Log < ActiveRecord::Base
 		entered = where(:install_id=>device_id).where(:action=>ACTION_ENTERED_GEOFENCE).count
 		return 0 if entered.zero?
 		clicked = where(:install_id=>device_id).where(:action=>ACTION_CLICKED_ON_SURVEY_NOTIFICATION).count
-		clicked/entered
+		clicked.to_f/entered.to_f
 	end
 
 	def self.geofence_response_rate(device_id)
 		entered = where(:install_id=>device_id).where(:action=>ACTION_ENTERED_GEOFENCE).count
 		return 0 if entered.zero?
 		responded = where(:install_id=>device_id).where(:action=>ACTION_RESPONDED_TO_QUESTION_FROM_GEOFENCE_NOTIFICATION).count
-		responded/entered
+		responded.to_f/entered.to_f
 	end
 
 end
