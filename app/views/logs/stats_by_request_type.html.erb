@@ -69,6 +69,7 @@
       <%=info[:geofence_notifications_clicked]%> (<%=number_to_percentage(100.to_f*info[:geofence_notifications_clicked].to_f/info[:geofences_entered].to_f)%>)
       </li>
       <li><%=t("responses")%>: <%=info[:responses]%></li>
+      <li><%=t("response_logs")%>: <%=info[:responses_logs]%></li>
       <li><%=t("responses_from_notifications")%>: <%=info[:responses_from_notification]%>
         (<%=number_to_percentage(100.to_f*info[:responses_from_notification].to_f/info[:geofences_entered].to_f)%>)
       </li>

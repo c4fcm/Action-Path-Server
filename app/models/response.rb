@@ -6,6 +6,10 @@ class Response < ActiveRecord::Base
 	has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
+	def self.count_for_request_type request_type
+		joins(:install).where("installs.request_type = ?",request_type).count
+	end
+
 	def self.from_json_obj obj
 		install = Install.get_or_create(obj["installId"])
 		response = Response.new

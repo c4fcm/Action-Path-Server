@@ -12,7 +12,8 @@ class LogsController < ApplicationController
         :count => count,
         :geofences_entered => Log.count_by_action(Log::ACTION_ENTERED_GEOFENCE,request_type),
         :geofence_notifications_clicked => Log.count_by_action(Log::ACTION_CLICKED_ON_SURVEY_NOTIFICATION,request_type),
-        :responses => Log.count_by_action(Log::ACTION_RESPONDED_TO_QUESTION,request_type),
+        :responses => Response.count_for_request_type(request_type),
+        :responses_logs => Log.count_by_action(Log::ACTION_RESPONDED_TO_QUESTION,request_type),
         :responses_from_notification => Log.count_by_action(Log::ACTION_RESPONDED_TO_QUESTION_FROM_GEOFENCE_NOTIFICATION,request_type)
       }
     end
