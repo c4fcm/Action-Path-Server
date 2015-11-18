@@ -7,6 +7,7 @@
     <tr>
       <th>Device Id</th>
       <th>Created at</th>
+      <th>Request Type</th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= install.device_id %></td>
         <td><%= install.created_at %></td>
+        <td><%= install.request_type %></td>
         <td><%= link_to 'Show', install %></td>
         <td><%= link_to 'Edit', edit_install_path(install) %></td>
         <td><%= link_to 'Destroy', install, method: :delete, data: { confirm: 'Are you sure?' } %></td>

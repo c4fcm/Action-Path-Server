@@ -11,102 +11,103 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014142708) do
+ActiveRecord::Schema.define(version: 20151118194003) do
 
   create_table "installs", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "device_id"
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.text     "device_id",    limit: 65535
+    t.string   "request_type", limit: 255
   end
 
   create_table "issues", force: :cascade do |t|
-    t.string   "status"
-    t.string   "summary"
-    t.text     "description"
-    t.float    "lat"
-    t.float    "lng"
-    t.text     "address"
-    t.string   "scf_image_url"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.integer  "place_id"
-    t.integer  "geofence_radius",           default: 500
-    t.string   "custom_image_file_name"
-    t.string   "custom_image_content_type"
-    t.integer  "custom_image_file_size"
+    t.string   "status",                    limit: 255
+    t.string   "summary",                   limit: 255
+    t.text     "description",               limit: 65535
+    t.float    "lat",                       limit: 24
+    t.float    "lng",                       limit: 24
+    t.text     "address",                   limit: 65535
+    t.string   "scf_image_url",             limit: 255
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.integer  "place_id",                  limit: 4
+    t.integer  "geofence_radius",           limit: 4,     default: 500
+    t.string   "custom_image_file_name",    limit: 255
+    t.string   "custom_image_content_type", limit: 255
+    t.integer  "custom_image_file_size",    limit: 4
     t.datetime "custom_image_updated_at"
-    t.text     "question"
-    t.text     "answer1"
-    t.text     "answer2"
-    t.text     "answer3"
-    t.text     "answer4"
-    t.text     "answer5"
-    t.text     "answer6"
+    t.text     "question",                  limit: 65535
+    t.text     "answer1",                   limit: 65535
+    t.text     "answer2",                   limit: 65535
+    t.text     "answer3",                   limit: 65535
+    t.text     "answer4",                   limit: 65535
+    t.text     "answer5",                   limit: 65535
+    t.text     "answer6",                   limit: 65535
   end
 
   create_table "logs", force: :cascade do |t|
-    t.integer  "issue_id"
-    t.string   "action"
+    t.integer  "issue_id",   limit: 4
+    t.string   "action",     limit: 255
     t.datetime "timestamp"
-    t.float    "lat"
-    t.float    "lng"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "install_id"
-    t.string   "details"
+    t.float    "lat",        limit: 24
+    t.float    "lng",        limit: 24
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "install_id", limit: 255
+    t.string   "details",    limit: 255
   end
 
   create_table "places", force: :cascade do |t|
-    t.string   "name"
-    t.text     "json"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "url_name"
-    t.string   "state"
+    t.string   "name",              limit: 255
+    t.text     "json",              limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.string   "url_name",          limit: 255
+    t.string   "state",             limit: 255
     t.datetime "issues_fetched_at"
-    t.string   "provider",          default: "seeclickfix"
+    t.string   "provider",          limit: 255,   default: "seeclickfix"
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "install_id"
-    t.integer  "issue_id"
+    t.integer  "install_id",         limit: 4
+    t.integer  "issue_id",           limit: 4
     t.datetime "timestamp"
-    t.string   "answer"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.float    "lat"
-    t.float    "lng"
-    t.text     "comment"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
+    t.string   "answer",             limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.float    "lat",                limit: 24
+    t.float    "lng",                limit: 24
+    t.text     "comment",            limit: 65535
+    t.string   "photo_file_name",    limit: 255
+    t.string   "photo_content_type", limit: 255
+    t.integer  "photo_file_size",    limit: 4
     t.datetime "photo_updated_at"
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "issue_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "user_id",    limit: 4
+    t.integer  "issue_id",   limit: 4
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

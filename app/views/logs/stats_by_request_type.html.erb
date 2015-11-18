@@ -1,0 +1,45 @@
+
+<div class="row">
+
+  <div class="col-md-12">
+    <h1>Stats</h1>
+  </div>
+
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-4">
+    <h2><%= t('user_population') %></h2>
+    <p>
+    <% @installs_by_request_type.each do |key, value| %>
+      <b><%=key%></b>: <%=value%></b>
+      <br />
+    <% end %>
+    </p>
+  </div>
+
+  <div class="col-md-4">
+    <h2><%= t('notifications') %></h2>
+    <p>
+    <b><%=t('geofences_entered')%></b>: <%=@geofences_entered%>
+    <br/>
+    <b><%=t('notifications_clicked')%></b>: <%=@notifications_clicked%> (<%=number_to_percentage(100.to_f*@notifications_clicked.to_f/@geofences_entered.to_f)%>)
+    </p>
+  </div>
+
+  <div class="col-md-4">
+    <h2><%= t('nav_menu_clicks') %></h2>
+    <p>
+    <% @clicks_by_menu_item.each do |info| %>
+      <b><%=info[:item]%></b>: <%=number_to_percentage(100.to_f*info[:clicks].to_f/@total_menu_item_clicks.to_f)%> (<%=info[:clicks]%>)</b>
+      <br />
+    <% end %>
+    </p>
+  </div>
+
+</div>
+
+<hr />
+

@@ -4,6 +4,14 @@ class LogsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:sync]
   skip_before_filter :authenticate_user!, :only => [:sync]
 
+  def stats_by_request_type
+    @installs_by_request_type = Log.where(:action=>Log::ACTION_PICKED_REQUEST_TYPE).group(:details).count
+    @geofences_entered = Log.count_by_action(Log::ACTION_ENTERED_GEOFENCE)
+    @notifications_clicked = Log.count_by_action(Log::ACTION_CLICKED_ON_SURVEY_NOTIFICATION)
+    @clicks_by_menu_item = Log.count_by_action(Log::ALL_MENU_ACTIONS)
+    @total_menu_item_clicks = @clicks_by_menu_item.inject(0){|sum, item| sum + item[:clicks]}
+  end
+  
   def sync
     install_id = params[:install_id]
     status_message = ""

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'responses/sync' => 'responses#sync'
   get 'responses/on_issues' => 'responses#on_issues'
 
+  get 'logs/stats_by_request_type' => 'logs#stats_by_request_type'
+
   resources :users, :responses, :subscriptions, :logs
   
   resources :issues do 

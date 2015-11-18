@@ -21,4 +21,8 @@ class Install < ActiveRecord::Base
     Log.geofence_response_rate @device_id
   end
 
+  def logged_action? action
+    logs.where(:action=>action).count > 0
+  end
+
 end
