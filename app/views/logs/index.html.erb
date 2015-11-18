@@ -20,7 +20,7 @@
   <tbody>
     <% @logs.each do |log| %>
       <tr>
-        <td><%= ink_to log.install.device_id, install_path(log.install) %></td>
+        <td><%= link_to log.install.device_id, install_path(log.install) %></td>
         <td><%= log.issue_id %></td>
         <td><%= log.action %></td>
         <td><%= log.details %></td>
