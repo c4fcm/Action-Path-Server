@@ -70,12 +70,18 @@ class Log < ActiveRecord::Base
 		responded.to_f/entered.to_f
 	end
 
-	def self.count_by_action(type)
+	def self.count_by_action(type, request_type=nil)
 		if type.kind_of? Array
 			return type.collect { |t| {:item=>t.sub("Clicked","").sub("MenuItem",""), 
 									   :clicks=>count_by_action(t)} }
 		else
-			return where(:action=>type).count()
+			if request_type.nil? 
+				return where(:action=>type).count()
+			else
+				return joins(:install).where("installs.request_type = ?",request_type).
+					where(:action=>type).count()
+			end
+			
 		end
 	end
 

@@ -13,7 +13,7 @@ class Install < ActiveRecord::Base
     found
   end
 
-  def geofence_click_rate
+  def self.geofence_click_rate
     Log.geofence_click_rate @device_id
   end
 

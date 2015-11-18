@@ -10,8 +10,13 @@
 <hr />
 
 <div class="row">
+  <div class="col-md-12"><h2><%= t("Summary")%></h2></div>
+</div>
+
+<div class="row">
+
   <div class="col-md-4">
-    <h2><%= t('user_population') %></h2>
+    <h3><%= t('user_population') %></h3>
     <p>
     <% @installs_by_request_type.each do |key, value| %>
       <b><%=key%></b>: <%=value%></b>
@@ -21,16 +26,20 @@
   </div>
 
   <div class="col-md-4">
-    <h2><%= t('notifications') %></h2>
+    <h3><%= t('notifications') %></h3>
     <p>
     <b><%=t('geofences_entered')%></b>: <%=@geofences_entered%>
     <br/>
-    <b><%=t('notifications_clicked')%></b>: <%=@notifications_clicked%> (<%=number_to_percentage(100.to_f*@notifications_clicked.to_f/@geofences_entered.to_f)%>)
+    <b><%=t('geofence_notifications_clicked')%></b>: <%=@geofence_notifications_clicked%> (<%=number_to_percentage(100.to_f*@geofence_notifications_clicked.to_f/@geofences_entered.to_f)%>)
+    <br />
+    <b><%=t('issue_updated_notifications')%></b>: <%=@issue_updated_notifications%>
+    <br />
+    <b><%=t('issue_updated_notification_clicks')%></b>: <%=@issue_updated_clicks%>
     </p>
   </div>
 
   <div class="col-md-4">
-    <h2><%= t('nav_menu_clicks') %></h2>
+    <h3><%= t('nav_menu_clicks') %></h3>
     <p>
     <% @clicks_by_menu_item.each do |info| %>
       <b><%=info[:item]%></b>: <%=number_to_percentage(100.to_f*info[:clicks].to_f/@total_menu_item_clicks.to_f)%> (<%=info[:clicks]%>)</b>
@@ -43,3 +52,30 @@
 
 <hr />
 
+<div class="row">
+  <div class="col-md-12"><h2><%= t("By Request Type")%></h2></div>
+</div>
+
+<div class="row">
+
+  <% @stats_by_request_type.each do |info| %>
+  
+    <div class="col-md-4">
+      <h3><%=info[:request_type]%></h3>
+      <p><ul>
+      <li><%=t("installs")%>: <%=info[:count]%></li>
+      <li><%=t("geofences_entered")%>: <%=info[:geofences_entered]%></li>
+      <li><%=t("geofence_notifications_clicked")%>: 
+      <%=info[:geofence_notifications_clicked]%> (<%=number_to_percentage(100.to_f*info[:geofence_notifications_clicked].to_f/info[:geofences_entered].to_f)%>)
+      </li>
+      <li><%=t("responses")%>: <%=info[:responses]%></li>
+      <li><%=t("responses_from_notifications")%>: <%=info[:responses_from_notification]%>
+        (<%=number_to_percentage(100.to_f*info[:responses_from_notification].to_f/info[:geofences_entered].to_f)%>)
+      </li>
+
+      </ul></p>
+    </div>
+
+  <% end  %>
+
+</div>
