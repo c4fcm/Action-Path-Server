@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Install</th>
+      <th>Device Id</th>
       <th>Issue</th>
       <th>Action</th>
       <th>Details</th>
@@ -20,7 +20,7 @@
   <tbody>
     <% @logs.each do |log| %>
       <tr>
-        <td><%= log.install_id %></td>
+        <td><%= ink_to log.install.device_id, show_install_path(log.install) %></td>
         <td><%= log.issue_id %></td>
         <td><%= log.action %></td>
         <td><%= log.details %></td>
