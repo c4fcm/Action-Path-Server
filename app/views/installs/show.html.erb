@@ -17,8 +17,8 @@ Has <%=link_to @install.responses.count.to_s + " answers", responses_path(@insta
 <p><b>Device Id:</b></p>
 <p>
   <ul>
-  <li>Responses: <%= @install.responses.count %></li>
-  <li>Logs: <%= @install.logs.count %></li>
+  <li><%= link_to t('responses'), install_responses_path(@install) %>: <%= @install.responses.count %></li>
+  <li><%= link_to t('logs'), install_logs_path(@install) %>: <%= @install.logs.count %></li>
   <li>Geofence click-through rate: <%= number_to_percentage @install.geofence_click_rate %></li>
   <li>Geofence response rate: <%= number_to_percentage @install.geofence_response_rate %></li>
   </ul>
