@@ -44,9 +44,9 @@ class Log < ActiveRecord::Base
 	]
 
 	def self.from_json_obj obj
-		install = Install.get_or_create(obj["installId"])
+		install = installs.get_or_create(obj["installId"])
 		log = Log.new
-		log.install_id = install.id
+		log.install_id = installs.id
 		log.issue_id = Integer(obj["issueId"])
 		log.action = obj["actionType"]
 		log.details = obj["details"]
@@ -56,17 +56,26 @@ class Log < ActiveRecord::Base
 		log
 	end
 
+	def self.count_by_request_type
+		joins(:install).where("installs.is_real=?",true).
+     		where(:action=>Log::ACTION_PICKED_REQUEST_TYPE).group(:details).count
+  	end
+
 	def self.geofence_click_rate(device_id)
-		entered = where(:install_id=>device_id).where(:action=>ACTION_ENTERED_GEOFENCE).count
+		entered = joins(:install).where("installs.is_real=?",true).
+			where(:install_id=>device_id).where(:action=>ACTION_ENTERED_GEOFENCE).count
 		return 0 if entered.zero?
-		clicked = where(:install_id=>device_id).where(:action=>ACTION_CLICKED_ON_SURVEY_NOTIFICATION).count
+		clicked = joins(:install).where("installs.is_real=?",true).
+			where(:install_id=>device_id).where(:action=>ACTION_CLICKED_ON_SURVEY_NOTIFICATION).count
 		clicked.to_f/entered.to_f
 	end
 
 	def self.geofence_response_rate(device_id)
-		entered = where(:install_id=>device_id).where(:action=>ACTION_ENTERED_GEOFENCE).count
+		entered = joins(:install).where("installs.is_real=?",true).
+			where(:install_id=>device_id).where(:action=>ACTION_ENTERED_GEOFENCE).count
 		return 0 if entered.zero?
-		responded = where(:install_id=>device_id).where(:action=>ACTION_RESPONDED_TO_QUESTION_FROM_GEOFENCE_NOTIFICATION).count
+		responded = joins(:install).where("installs.is_real=?",true).
+			where(:install_id=>device_id).where(:action=>ACTION_RESPONDED_TO_QUESTION_FROM_GEOFENCE_NOTIFICATION).count
 		responded.to_f/entered.to_f
 	end
 
@@ -76,9 +85,11 @@ class Log < ActiveRecord::Base
 									   :clicks=>count_by_action(t)} }
 		else
 			if request_type.nil? 
-				return where(:action=>type).count()
+				return joins(:install).where("installs.is_real=?",true).where(:action=>type).count()
 			else
-				return joins(:install).where("installs.request_type = ?",request_type).
+				return joins(:install).
+					where("installs.is_real=?",true).
+					where("installs.request_type = ?",request_type).
 					where(:action=>type).count()
 			end
 			

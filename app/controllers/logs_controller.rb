@@ -5,7 +5,7 @@ class LogsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:sync]
 
   def stats_by_request_type
-    @installs_by_request_type = Log.where(:action=>Log::ACTION_PICKED_REQUEST_TYPE).group(:details).count
+    @installs_by_request_type = Log.count_by_request_type
     @stats_by_request_type  = @installs_by_request_type.collect do |request_type,count|
       {
         :request_type => request_type,
