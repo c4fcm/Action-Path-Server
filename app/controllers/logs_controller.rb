@@ -55,6 +55,8 @@ class LogsController < ApplicationController
       @logs = Log.where( issue_id: params[:issue_id]).order(timestamp: :desc).page(params[:page]).per(500)
     elsif params[:install_id].present?
       @logs = Log.where( install_id: params[:install_id]).order(timestamp: :desc).page(params[:page]).per(500)
+    elsif params[:request_type].present?
+      @logs = Log.where( details: params[:request_type]).order(timestamp: :desc).page(params[:page]).per(500)
     else
       @logs = Log.all.order(timestamp: :desc).page(params[:page]).per(500)
     end
