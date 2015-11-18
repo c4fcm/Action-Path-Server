@@ -10,6 +10,11 @@ Has <%=link_to @install.responses.count.to_s + " answers", responses_path(@insta
 </p>
 
 <p>
+  <strong>Is Real?</strong>
+  <%= @install.is_real %>
+</p>
+
+<p>
   <strong>Created at:</strong>
   <%= @install.created_at %>
 </p>

@@ -86,6 +86,6 @@ class InstallsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def install_params
-      params.require(:install).permit(:id, :created_at)
+      params.require(:install).permit(:id, :created_at, :is_real)
     end
 end

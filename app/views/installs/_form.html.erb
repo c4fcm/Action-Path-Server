@@ -1,4 +1,5 @@
-<%= form_for(@install) do |f| %>
+<%= bootstrap_form_for(@install) do |f| %>
+
   <% if @install.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@install.errors.count, "error") %> prohibited this install from being saved:</h2>
@@ -11,15 +12,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :device_id %><br>
-    <%= f.text_field :device_id %>
-  </div>
-  <div class="field">
-    <%= f.label :created_at %><br>
-    <%= f.datetime_select :created_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :device_id %>
+
+  <%= f.datetime_select :created_at %>
+
+  <%= f.check_box :is_real %>
+
+  <%= f.primary "save" %>
+
 <% end %>
