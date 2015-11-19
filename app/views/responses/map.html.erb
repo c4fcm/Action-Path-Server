@@ -1,0 +1,23 @@
+<h1><%= t('Response Map') %></h1>
+
+<div id="map">
+
+</div>
+
+<script>
+$(function(){
+  var map = L.map('map')
+  map.setView([<%=@lat%>,<%=@lng%>]);
+<% @responses.each { |response| %>
+  var marker<%=response['id']%> = L.marker([<%=response['lat']%>,<%=response['lng']%>]).addTo(map);
+  marker<%=response['id']%>.bindPopup("<%=response.issue['summary']%>");
+<% } %>  
+  
+  var group = new L.featureGroup([<%=(@responses.map { |r| 'marker'+r['id'].to_s }).join(", ") %>]);
+  map.fitBounds(group.getBounds().pad(0.5));
+
+  // Set up the OSM layer
+  var layer = new L.StamenTileLayer("toner-lite");
+  map.addLayer(layer);
+});
+</script>

@@ -24,12 +24,19 @@ class Response < ActiveRecord::Base
 	end
 
 	def self.on_issues_from_others(issue_ids, install_device_id, after_time)
-	  includes(:install).
+	  	includes(:install).
 	  	references(:install).
 		where('installs.device_id != ?', install_device_id).
 	  	where(:issue_id => issue_ids).
 	  	where("responses.created_at > ?", after_time).
 	  	order(timestamp: :desc)
 	end
+
+	def self.from_real()
+		includes(:issue).
+		includes(:install).
+		references(:install).
+		where("installs.is_real=?",true)
+	end	
 
 end

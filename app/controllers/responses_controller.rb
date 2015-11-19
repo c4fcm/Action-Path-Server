@@ -4,6 +4,15 @@ class ResponsesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:sync, :on_issues]
   skip_before_filter :authenticate_user!, :only => [:sync, :on_issues]
 
+  def map
+    from_real = false
+    if params[:from_real].present? and params[:from_real]==1
+      @responses = Response.all
+    else
+      @responses = Response.from_real
+    end
+  end
+
   def on_issues
     issue_ids = params.require(:issue_ids)
     requestor_device_id = params.require(:install_id)

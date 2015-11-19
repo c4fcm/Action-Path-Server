@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'responses/on_issues' => 'responses#on_issues'
 
   get 'logs/stats_by_request_type' => 'logs#stats_by_request_type'
+  get 'responses/map' => 'responses#map'
 
   resources :users, :responses, :subscriptions, :logs
   
