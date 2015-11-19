@@ -44,9 +44,9 @@ class Log < ActiveRecord::Base
 	]
 
 	def self.from_json_obj obj
-		install = installs.get_or_create(obj["installId"])
+		install = Install.get_or_create(obj["installId"])
 		log = Log.new
-		log.install_id = installs.id
+		log.install_id = install.id
 		log.issue_id = Integer(obj["issueId"])
 		log.action = obj["actionType"]
 		log.details = obj["details"]
