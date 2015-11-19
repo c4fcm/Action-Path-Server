@@ -7,9 +7,9 @@ class ResponsesController < ApplicationController
   def map
     from_real = false
     if params[:from_real].present? and params[:from_real]=="true"
-      @responses = Response.all
-    else
       @responses = Response.from_real
+    else
+      @responses = Response.all
     end
   end
 
