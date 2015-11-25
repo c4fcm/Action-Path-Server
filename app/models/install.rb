@@ -17,6 +17,10 @@ class Install < ActiveRecord::Base
     where("installs.is_real=?",true).group(:request_type).count
   end
 
+  def self.with_request_type request_type
+    where("installs.is_real=?",true).where("installs.request_type=?",request_type)
+  end
+
   def count_logs_by_action
     logs.group(:action).count
   end

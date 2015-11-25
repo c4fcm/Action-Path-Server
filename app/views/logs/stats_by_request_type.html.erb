@@ -63,7 +63,6 @@
     <div class="col-md-4">
       <h3><%=info[:request_type]%></h3>
       <p><ul>
-      <li><%=t("installs")%>: <%=info[:count]%></li>
       <li><%=t("geofences_entered")%>: <%=info[:geofences_entered]%></li>
       <li><%=t("geofence_notifications_clicked")%>: 
       <%=info[:geofence_notifications_clicked]%> (<%=number_to_percentage(100.to_f*info[:geofence_notifications_clicked].to_f/info[:geofences_entered].to_f)%>)
@@ -73,7 +72,13 @@
       <li><%=t("responses_from_notifications")%>: <%=info[:responses_from_notification]%>
         (<%=number_to_percentage(100.to_f*info[:responses_from_notification].to_f/info[:geofences_entered].to_f)%>)
       </li>
-
+      <li><%=t("installs")%>: <%=info[:count]%>
+        <ul>
+          <% info[:installs].each do |install| %>
+            <li><%= link_to install.device_id, install %></li>
+          <% end %>
+        </ul>
+      </li>
       </ul></p>
     </div>
 

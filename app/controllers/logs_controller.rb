@@ -8,6 +8,7 @@ class LogsController < ApplicationController
     @installs_by_request_type = Install.count_by_request_type
     @stats_by_request_type  = @installs_by_request_type.collect do |request_type,count|
       {
+        :installs => Install.with_request_type(request_type),
         :request_type => request_type,
         :count => count,
         :geofences_entered => Log.count_by_action(Log::ACTION_ENTERED_GEOFENCE,request_type),
