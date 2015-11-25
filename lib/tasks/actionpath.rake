@@ -4,8 +4,9 @@ namespace :actionpath do
   task set_install_request_type_from_log: :environment do
   	Install.all.each do |install|
   		if install.logged_action? Log::ACTION_PICKED_REQUEST_TYPE
-  			picked_request_type_log = install.logs.where(
-  				:action=>Log::ACTION_PICKED_REQUEST_TYPE).first
+  			# copy over they latest request type choice
+        picked_request_type_log = install.logs.where(
+  				:action=>Log::ACTION_PICKED_REQUEST_TYPE).order(timestamp: :desc).first
   			request_type = picked_request_type_log[:details]
   			install.update_column :request_type, request_type
   			Rails.logger.info("Set #{install.device_id} to #{request_type}")

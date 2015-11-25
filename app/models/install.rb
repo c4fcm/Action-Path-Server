@@ -13,6 +13,10 @@ class Install < ActiveRecord::Base
     found
   end
 
+  def self.count_by_request_type
+    where("installs.is_real=?",true).group(:request_type).count
+  end
+
   def geofence_click_rate
     Log.geofence_click_rate @device_id
   end

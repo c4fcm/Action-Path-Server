@@ -56,11 +56,6 @@ class Log < ActiveRecord::Base
 		log
 	end
 
-	def self.count_by_request_type
-		joins(:install).where("installs.is_real=?",true).
-     		where(:action=>Log::ACTION_PICKED_REQUEST_TYPE).group(:details).count
-  	end
-
 	def self.geofence_click_rate(device_id)
 		entered = joins(:install).where("installs.is_real=?",true).
 			where(:install_id=>device_id).where(:action=>ACTION_ENTERED_GEOFENCE).count
