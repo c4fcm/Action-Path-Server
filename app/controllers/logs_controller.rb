@@ -54,6 +54,9 @@ class LogsController < ApplicationController
   def index
     if params[:issue_id].present?
       @logs = Log.where( issue_id: params[:issue_id]).order(timestamp: :desc).page(params[:page]).per(500)
+    elsif params[:install_id].present? and params[:action_text].present?
+      @logs = Log.where( install_id: params[:install_id]).
+        where( action: params[:action_text]).order(timestamp: :desc).page(params[:page]).per(500)
     elsif params[:install_id].present?
       @logs = Log.where( install_id: params[:install_id]).order(timestamp: :desc).page(params[:page]).per(500)
     elsif params[:request_type].present?
