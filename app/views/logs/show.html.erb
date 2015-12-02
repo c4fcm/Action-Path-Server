@@ -18,6 +18,9 @@
 <p>
   <strong>Issue:</strong>
   <%= @log.issue_id %>
+  <% if @log.has_issue? %>
+  <i>distance: <%=number_with_precision @log.distance_from_issue, :precision=>2 %> miles</i>
+  <% end %>
 </p>
 <p>
   <strong>Lat:</strong>
