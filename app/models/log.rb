@@ -1,9 +1,12 @@
 class Log < ActiveRecord::Base
 
 	belongs_to :install
+	belongs_to :issue
 
 	acts_as_mappable
 	
+	INVALID_ISSUE_ID = -1
+
 	# keey in sync with mobile app LogMsg constants
 	ACTION_CLICKED_ON_ISSUE_IN_LIST = "ClickOnIssueInList"
 	ACTION_FOLLOWED_ISSUE_FROM_FOLLOW_BUTTON = "FollowedIssueFromFollowButton"
@@ -91,6 +94,14 @@ class Log < ActiveRecord::Base
 			end
 			
 		end
+	end
+
+	def has_issue?
+		issue_id != INVALID_ISSUE_ID
+	end
+
+	def distance_from_issue
+		has_issue? ? distance_from(issue) : nil
 	end
 
 end

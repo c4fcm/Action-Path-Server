@@ -21,7 +21,8 @@
     <% @logs.each do |log| %>
       <tr>
         <td><%= link_to log.install.device_id, install_path(log.install) %></td>
-        <td><%= link_to log.issue_id, issue_path(log.issue_id) %></td>
+        <td><%= link_to log.issue_id, issue_path(log.issue_id) %>
+        <%= number_with_precision(log.distance_from_issue,:precision=>2) if log.has_issue? %></td>
         <td><%= log.action %></td>
         <td><%= log.details %></td>
         <td><%= log.timestamp.in_time_zone('EST') %></td>
