@@ -60,3 +60,6 @@ gem 'devise'	# for user accounts
 gem 'kaminari'	# for view pagination
 
 gem 'leaflet-rails' # for making maps
+
+gem 'geokit-rails' # for working with lat/lngs smartly
+

@@ -2,6 +2,8 @@ class Log < ActiveRecord::Base
 
 	belongs_to :install
 
+	acts_as_mappable
+	
 	# keey in sync with mobile app LogMsg constants
 	ACTION_CLICKED_ON_ISSUE_IN_LIST = "ClickOnIssueInList"
 	ACTION_FOLLOWED_ISSUE_FROM_FOLLOW_BUTTON = "FollowedIssueFromFollowButton"

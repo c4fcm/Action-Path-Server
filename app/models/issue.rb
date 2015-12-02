@@ -3,6 +3,8 @@ class Issue < ActiveRecord::Base
   has_many :responses
   belongs_to :place
 
+  acts_as_mappable
+
   INVALID_PLACE_ID = -1
 
   has_attached_file :custom_image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
