@@ -41,4 +41,8 @@ class Response < ActiveRecord::Base
 		where("installs.is_real=?",true)
 	end	
 
+	def distance_from_issue
+		distance_from(issue)
+	end
+
 end

@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Install</th>
-      <th>Issue</th>
+      <th>Issue <small>(distance in miles)</small></th>
       <th>Answer</th>
       <th>Comment</th>
       <th>Timestamp</th>
@@ -18,7 +18,8 @@
     <% @responses.each do |response| %>
       <tr>
         <td><%= link_to response.install_id, install_path(response.install_id) %></td>
-        <td><%= link_to response.issue_id, issue_path(response.issue_id) %></td>
+        <td><%= link_to response.issue_id, issue_path(response.issue_id) %> 
+          (<%=number_with_precision response.distance_from_issue, :precision=>2%>)</td>
         <td><%= response.answer %></td>
         <td><%= response.comment %></td>
         <td><%= response.timestamp %></td>

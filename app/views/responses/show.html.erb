@@ -22,7 +22,8 @@
 
 <p>
   <strong>Issue:</strong>
-  <%= @response.issue_id %>
+  <%= link_to @response.issue_id, url_for(@response.issue) %>
+  <i>distance: <%=number_with_precision @response.distance_from_issue, :precision=>2 %> miles</i>
 </p>
 <p>
   <strong>Lat:</strong>
