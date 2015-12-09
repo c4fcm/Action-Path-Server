@@ -96,6 +96,23 @@ class Log < ActiveRecord::Base
 		end
 	end
 
+	def self.by_action(type, request_type=nil)
+		if type.kind_of? Array
+			return type.collect { |t| {:item=>t.sub("Clicked","").sub("MenuItem",""), 
+									   :clicks=>by_action(t)} }
+		else
+			if request_type.nil? 
+				return joins(:install).where("installs.is_real=?",true).where(:action=>type)
+			else
+				return joins(:install).
+					where("installs.is_real=?",true).
+					where("installs.request_type = ?",request_type).
+					where(:action=>type)
+			end
+			
+		end
+	end
+
 	def has_issue?
 		issue_id != INVALID_ISSUE_ID
 	end

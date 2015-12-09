@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   post 'installs/add' => 'installs#add'
   post 'responses/sync' => 'responses#sync'
   get 'responses/on_issues' => 'responses#on_issues'
-
-  get 'logs/stats_by_request_type' => 'logs#stats_by_request_type'
+  get 'stats/stats_by_request_type' => 'stats#stats_by_request_type'
+  get 'stats/notification_paths' => 'stats#notification_paths'
   get 'responses/map' => 'responses#map'
 
   resources :users, :responses, :subscriptions, :logs

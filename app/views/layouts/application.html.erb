@@ -54,6 +54,13 @@
             <li><%= link_to "users", users_path  %></li>
             <li><%= link_to "installs", installs_path  %></li>
             <li><%= link_to "logs", logs_path  %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">stats <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "stats by request type", '/stats/stats_by_request_type' %></li>
+                <li><%= link_to "notification paths", '/stats/notification_paths' %></li>
+              </ul>
+            </li>
             <li><%= link_to "responses", responses_path  %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
